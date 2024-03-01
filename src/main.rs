@@ -42,6 +42,13 @@ impl Point {
     }
 }
 
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right,
+}
+
 fn main() {
     let p1 = Point { x: 3, y: 4 };
 
