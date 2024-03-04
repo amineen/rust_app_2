@@ -11,7 +11,6 @@ impl Point {
 
         let squared = delta_x.pow(2) + delta_y.pow(2);
         let distance = f32::sqrt(squared as f32);
-        // let distance = (squared as f64).sqrt();
         distance
     }
 }

@@ -3,7 +3,7 @@ mod point;
 mod rectangle;
 
 use point::Point;
-use rectangle::Rectangle;
+use rectangle::{square, Rectangle};
 
 fn main() {
     let p1 = Point { x: 3, y: 4 };
@@ -11,10 +11,6 @@ fn main() {
     let p2 = Point { x: 4, y: 8 };
 
     let distance = p1.compute_distance(&p2);
-
-    let data: &str = "Aaron Mineen";
-
-    let s = data.to_string();
 
     println!(
         "The distance between {:?} and {:?} is {:#?}",
@@ -25,6 +21,10 @@ fn main() {
         height: 20.0,
         width: 30.0,
     };
+    let rect2 = Rectangle {
+        height: 10.0,
+        width: 40.0,
+    };
 
     let area = rect1.compute_area();
 
@@ -34,6 +34,6 @@ fn main() {
 
     println!("The perimeter of {:?} is {:?}", rect1, perimeter);
 
-    let square = Rectangle::square(10.0);
-    println!("{:?} is a Square", square)
+    let sqr: Rectangle = square(10.0);
+    println!("{:?} is a Square", sqr)
 }

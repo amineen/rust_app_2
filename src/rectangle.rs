@@ -14,11 +14,11 @@ impl Rectangle {
         let perimeter = 2.0 * self.width + 2.0 * self.height;
         perimeter
     }
+}
 
-    pub fn square(size: f32) -> Self {
-        Self {
-            width: size,
-            height: size,
-        }
+pub fn square(size: f32) -> Rectangle {
+    Rectangle {
+        width: size,
+        height: size,
     }
 }
