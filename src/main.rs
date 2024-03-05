@@ -10,7 +10,7 @@ fn main() {
 
     let p2 = Point { x: 4, y: 8 };
 
-    let distance = p1.compute_distance(&p2);
+    let distance: f32 = p1.compute_distance(&p2);
 
     println!(
         "The distance between {:?} and {:?} is {:#?}",
@@ -26,11 +26,11 @@ fn main() {
         width: 40.0,
     };
 
-    let area = rect1.compute_area();
+    let area: f32 = rect1.compute_area();
 
     println!("The area of {:?} is {:?}", rect1, area);
 
-    let perimeter = rect1.compute_perimeter();
+    let perimeter: f32 = rect1.compute_perimeter();
 
     println!("The perimeter of {:?} is {:?}", rect1, perimeter);
 
