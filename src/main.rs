@@ -74,7 +74,7 @@ fn main() {
     }
 
     let text =
-        String::from("My new is Aaron Mineen I live in Zambia I am a Liberian Zambia is great");
+        String::from("My name is Aaron Mineen I live in Zambia I am a Liberian Zambia is great");
     let word_map = count_words_in_text(&text);
     print_hash_map(&word_map);
 }
