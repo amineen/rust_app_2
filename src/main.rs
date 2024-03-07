@@ -1,9 +1,11 @@
 #![allow(unused)]
 mod point;
 mod rectangle;
+mod services;
 
 use point::Point;
 use rectangle::{square, Rectangle};
+use services::{print_bytes, print_character};
 
 fn main() {
     let p1 = Point { x: 3, y: 4 };
@@ -35,5 +37,9 @@ fn main() {
     println!("The perimeter of {:?} is {:?}", rect1, perimeter);
 
     let sqr: Rectangle = square(10.0);
-    println!("{:?} is a Square", sqr)
+    println!("{:?} is a Square", sqr);
+
+    let name = "Aaron Mineen";
+    print_character(name);
+    print_bytes(name);
 }
