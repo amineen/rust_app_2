@@ -8,48 +8,61 @@ use std::collections::HashMap;
 
 use point::Point;
 use rectangle::{square, Rectangle};
-// use services::{print_bytes, print_character};
+use services::{print_bytes, print_character};
 
 use hash_map_service::{
     count_words_in_text, get_value, insert_value, min_max_scores, print_hash_map, print_scores,
 };
 
 fn main() {
-    // let p1 = Point { x: 3, y: 4 };
+    // create_point();
+    // create_rectangle();
+    // print_characters();
+    // create_hash_map_services();
+}
 
-    // let p2 = Point { x: 4, y: 8 };
+fn create_point() {
+    let p1 = Point { x: 3, y: 4 };
 
-    // let distance: f32 = p1.compute_distance(&p2);
+    let p2 = Point { x: 4, y: 8 };
 
-    // println!(
-    //     "The distance between {:?} and {:?} is {:#?}",
-    //     p1, p2, distance
-    // );
+    let distance: f32 = p1.compute_distance(&p2);
 
-    // let rect1 = Rectangle {
-    //     height: 20.0,
-    //     width: 30.0,
-    // };
-    // let rect2 = Rectangle {
-    //     height: 10.0,
-    //     width: 40.0,
-    // };
+    println!(
+        "The distance between {:?} and {:?} is {:#?}",
+        p1, p2, distance
+    );
+}
 
-    // let area: f32 = rect1.compute_area();
+fn create_rectangle() {
+    let rect1 = Rectangle {
+        height: 20.0,
+        width: 30.0,
+    };
+    let rect2 = Rectangle {
+        height: 10.0,
+        width: 40.0,
+    };
 
-    // println!("The area of {:?} is {:?}", rect1, area);
+    let area: f32 = rect1.compute_area();
 
-    // let perimeter: f32 = rect1.compute_perimeter();
+    println!("The area of {:?} is {:?}", rect1, area);
 
-    // println!("The perimeter of {:?} is {:?}", rect1, perimeter);
+    let perimeter: f32 = rect1.compute_perimeter();
 
-    // let sqr: Rectangle = square(10.0);
-    // println!("{:?} is a Square", sqr);
+    println!("The perimeter of {:?} is {:?}", rect1, perimeter);
 
-    // let name = "Aaron Mineen";
-    // print_character(name);
-    // print_bytes(name);
+    let sqr: Rectangle = square(10.0);
+    println!("{:?} is a Square", sqr);
+}
 
+fn print_characters() {
+    let name = "Aaron Mineen";
+    print_character(name);
+    print_bytes(name);
+}
+
+fn create_hash_map_services() {
     let mut grades: HashMap<String, i32> = HashMap::new();
 
     insert_value("Aaron", 98, &mut grades);
