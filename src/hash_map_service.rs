@@ -13,6 +13,17 @@ pub fn remove_value(key: &str, scores: &mut HashMap<String, i32>) {
     scores.remove(key);
 }
 
+pub fn count_words_in_text(text: &String) -> HashMap<String, i32> {
+    let mut words_map: HashMap<String, i32> = HashMap::new();
+
+    for word in text.split_whitespace() {
+        let count = words_map.entry(String::from(word)).or_insert(0);
+        *count += 1;
+    }
+
+    words_map
+}
+
 pub fn min_max_scores(scores: &HashMap<String, i32>) -> (i32, i32) {
     let mut min = i32::MAX;
     let mut max = i32::MIN;
@@ -46,4 +57,10 @@ pub fn print_scores(scores: &HashMap<String, i32>) {
     println!("--------------------");
     println!("Average: {}", avg);
     println!("Total: {}", total);
+}
+
+pub fn print_hash_map(hash_map: &HashMap<String, i32>) {
+    for (key, value) in hash_map {
+        println!("{}: {}", key, value);
+    }
 }

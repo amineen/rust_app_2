@@ -10,7 +10,9 @@ use point::Point;
 use rectangle::{square, Rectangle};
 // use services::{print_bytes, print_character};
 
-use hash_map_service::{get_value, insert_value, min_max_scores, print_scores};
+use hash_map_service::{
+    count_words_in_text, get_value, insert_value, min_max_scores, print_hash_map, print_scores,
+};
 
 fn main() {
     // let p1 = Point { x: 3, y: 4 };
@@ -66,4 +68,13 @@ fn main() {
     );
 
     print_scores(&grades);
+
+    for i in 0..5 {
+        println!("↓");
+    }
+
+    let text =
+        String::from("My new is Aaron Mineen I live in Zambia I am a Liberian Zambia is great");
+    let word_map = count_words_in_text(&text);
+    print_hash_map(&word_map);
 }
