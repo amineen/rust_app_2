@@ -35,8 +35,14 @@ fn main() {
 
     let file_name = "power_consumption.csv";
 
-    //create an array of power consumption data
-    let power_consumption_data = create_power_consumptions("2023-01-02", 12.0);
+    let mut power_consumption_data: Vec<power_consumption::PowerConsumption> =
+        create_power_consumptions("2023-04-01", 12.6);
+
+    for i in 2..31 {
+        let date = format!("2023-04-{}", i);
+        let power_data = create_power_consumptions(date.as_str(), 12.5);
+        power_consumption_data.extend(power_data);
+    }
 
     let mut power_consumption_text = String::new();
 
