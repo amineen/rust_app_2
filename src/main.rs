@@ -1,6 +1,8 @@
 #![allow(unused)]
+mod file_services;
 mod hash_map_service;
 mod point;
+mod power_consumption;
 mod rectangle;
 mod services;
 
@@ -14,11 +16,45 @@ use hash_map_service::{
     count_words_in_text, get_value, insert_value, min_max_scores, print_hash_map, print_scores,
 };
 
+use file_services::{file_exists, read_file_content, write_text_to_file};
+
+use power_consumption::create_power_consumptions;
+
+struct PowerConsumption {
+    datetime: String,
+    active_power: f32,
+    reactive_power: f32,
+    power_factor: f32,
+}
+
 fn main() {
     // create_point();
     // create_rectangle();
     // print_characters();
     // create_hash_map_services();
+
+    let file_name = "power_consumption.csv";
+
+    //create an array of power consumption data
+    let power_consumption_data = create_power_consumptions("2023-01-02", 12.0);
+
+    let mut power_consumption_text = String::new();
+
+    //check if the file exists
+    if !file_exists(file_name) {
+        let header = "datetime,active_power,energy_used,power_factor\n";
+        power_consumption_text.push_str(header);
+    }
+
+    for data in power_consumption_data {
+        let line = format!(
+            "{},{},{},{}\n",
+            data.datetime, data.active_power, data.energy_used, data.power_factor
+        );
+        power_consumption_text.push_str(&line);
+    }
+
+    write_text_to_file(file_name, &power_consumption_text);
 }
 
 fn create_point() {
