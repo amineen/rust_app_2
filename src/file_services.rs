@@ -1,3 +1,4 @@
+use std::error::Error;
 use std::fs::{File, OpenOptions};
 use std::io::{ErrorKind, Read, Write};
 
