@@ -20,6 +20,8 @@ use file_services::{file_exists, read_file_content, write_text_to_file};
 
 use power_consumption::create_power_consumptions;
 
+use chrono::{Datelike, NaiveDate, ParseError};
+
 struct PowerConsumption {
     datetime: String,
     active_power: f32,
@@ -33,13 +35,42 @@ fn main() {
     // print_characters();
     // create_hash_map_services();
 
+    let period = "2023-05";
+    create_monthly_consumption(period);
+}
+
+//function that uses chrono to get the days in a month
+fn get_days_in_month(date_str: &str) -> i8 {
+    let date_str = format!("{}-01", date_str);
+    let first_day = NaiveDate::parse_from_str(date_str.as_str(), "%Y-%m-%d")
+        .unwrap_or_else(|err| panic!("Unable to parse date: {}", err));
+
+    let year = first_day.year();
+    let month = first_day.month();
+
+    // Calculate the first day of the next month (new approach)
+    let next_month_date = match month {
+        12 => NaiveDate::from_ymd_opt(year + 1, 1, 1),
+        _ => NaiveDate::from_ymd_opt(year, month + 1, 1),
+    }
+    .unwrap_or_else(|| panic!("Unable to create date for the next month in: {}", date_str));
+
+    // Find the difference in days
+    let duration = next_month_date - first_day;
+    duration.num_days() as i8
+}
+
+fn create_monthly_consumption(period: &str) {
     let file_name = "power_consumption.csv";
 
-    let mut power_consumption_data: Vec<power_consumption::PowerConsumption> =
-        create_power_consumptions("2023-04-01", 12.6);
+    let days = get_days_in_month(period);
 
-    for i in 2..31 {
-        let date = format!("2023-04-{}", i);
+    let first_day = format!("{}-01", period);
+    let mut power_consumption_data: Vec<power_consumption::PowerConsumption> =
+        create_power_consumptions(first_day.as_str(), 12.6);
+
+    for i in 2..=days {
+        let date = format!("{}-{}", period, i);
         let power_data = create_power_consumptions(date.as_str(), 12.5);
         power_consumption_data.extend(power_data);
     }
